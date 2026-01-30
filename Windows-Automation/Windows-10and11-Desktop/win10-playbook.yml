@@ -1,0 +1,33 @@
+---
+
+- name: Run Preliminary checks and Application Installation
+  hosts: windows
+  gather_facts: yes
+  vars_files:
+    - vars/partitioning.yml
+  tasks:
+
+    - name: Gather Windows facts
+      ansible.builtin.setup:
+        gather_subset: all
+
+    - name: Display Banner
+      command: cat /home/vvolf/Ansible/Windows-Automation/Windows-10and11-Desktop/templates/banner.txt
+      register: banner_output
+      delegate_to: localhost
+
+    - name: Print Banner Output
+      debug:
+        msg: "{{ banner_output.stdout_lines }}"
+
+    - name: Include Preliminary Checks
+      include_tasks: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/prelims/win10-prelims.yml
+
+    - name: Include Application Installation
+      include_tasks: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/roles/App_install/tasks/main.yml
+
+- name: Include Windows 10 Hardening
+  hosts: windows
+  gather_facts: false
+  roles:
+    - role: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/roles/Windows10-Hardening

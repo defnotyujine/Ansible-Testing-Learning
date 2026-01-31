@@ -1,0 +1,3 @@
+# Ignore specific RHEL hardening roles
+roles/RHEL9-CIS/
+roles/RHEL9-STIG/

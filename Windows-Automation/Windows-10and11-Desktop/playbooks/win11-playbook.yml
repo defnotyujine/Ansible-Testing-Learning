@@ -22,9 +22,7 @@
 
     - name: Include Application Installation
       include_tasks: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/roles/App_install/tasks/main.yml
-    
-- name: Include Windows 11 Hardening
-  hosts: windows
-  gather_facts: false
-  roles:
-    - role: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/roles/Windows11-Hardening
+
+    - name: Include Windows 11 Hardening
+      ansible.builtin.include_role:
+        name: WIN11-CIS

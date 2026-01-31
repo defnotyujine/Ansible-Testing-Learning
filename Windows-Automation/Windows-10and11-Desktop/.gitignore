@@ -1,3 +1,3 @@
 # Ignore specific RHEL hardening roles
-roles/WIN10-CIS/
-roles/WIN11-CIS/
+playbooks/roles/WIN10-CIS/*
+playboooks/roles/WIN11-CIS/*

@@ -1,0 +1,5 @@
+---
+roles:
+  - name: WINSRV2022-CIS
+    src: git@github.com:ansible-lockdown/Windows-2022-CIS.git
+    scm: git

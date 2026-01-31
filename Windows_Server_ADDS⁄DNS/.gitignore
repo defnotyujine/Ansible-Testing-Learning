@@ -1,0 +1,2 @@
+# Ignore specific RHEL hardening roles
+playbooks/roles/WINSRV2022-CIS/*

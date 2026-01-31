@@ -1,4 +1,7 @@
 ---
+# Run Preliminaries
+run_preliminaries: true
+
 # Role Toggles
 samba_role: false
 httpd_role: false
@@ -6,7 +9,8 @@ clamav_role: false
 firewalld_role: false
 keycloak_role: false
 zabbix_role: false
-rhel9_cis_role: true
+kvm_role: true
+rhel9_cis_role: false
 rhel9_stig_role: false
 
 # CIS Environment Specific Variables
@@ -45,8 +49,8 @@ keycloak_install_dir: /opt/keycloak
 
 
 # Samba Variables
-samba_user: "frqadmin"
-samba_password: "!frqAdmin"
+samba_user: "admin"
+samba_password: "admin123"
 samba_share_directory: "src/samba/share"
 samba_group_name: "sambashare"
 

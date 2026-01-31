@@ -1,0 +1,3 @@
+---
+- name: Include KVM, Cockpit, and libvirt setup
+  ansible.builtin.include_tasks: setup.yml

@@ -7,6 +7,7 @@
   tasks:
     - name: Run Preliminaries
       ansible.builtin.import_tasks: prelims/rhel-prelims.yml
+      when: run_preliminaries
 
     - name: Include project roles
       block:
@@ -39,6 +40,11 @@
           ansible.builtin.include_role:
             name: zabbix
           when: zabbix_role
+
+        - name: Setup KVM Cockpit
+          ansible.builtin.include_role:
+            name: kvm
+          when: kvm_role
 
         - name: Apply RHEL 9 CIS Hardening
           ansible.builtin.include_role:

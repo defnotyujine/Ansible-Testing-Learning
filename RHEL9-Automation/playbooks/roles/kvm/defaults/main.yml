@@ -1,0 +1,9 @@
+---
+kvm_packages:
+  - qemu-kvm
+  - libvirt
+  - virt-install
+  - cockpit
+  - cockpit-machines
+
+libvirt_user: "{{ ansible_user | default('root') }}"

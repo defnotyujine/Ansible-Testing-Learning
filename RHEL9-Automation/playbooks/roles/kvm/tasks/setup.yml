@@ -1,0 +1,34 @@
+---
+- name: Install KVM and related packages
+  ansible.builtin.dnf:
+    name: "{{ kvm_packages }}"
+    state: present
+
+- name: Start KVM related services
+  block:
+    - name: Ensure and start libvirt services
+      ansible.builtin.systemd:
+        name: libvirtd
+        enabled: true
+        state: started
+
+    - name: Enable and start Cockpit services
+      ansible.builtin.systemd:
+        name: cockpit
+        enabled: true
+        state: started
+    
+    - name: Add user to libvirt group
+      ansible.builtin.user:
+        name: "{{ libvirt_user }}"
+        groups: libvirt
+        append: true
+      when: libvirt_user != "root"
+    
+    - name: Allow Cockpit service through firewall
+      ansible.builtin.firewalld:
+        service: cockpit
+        permanent: true
+        state: enabled
+        immediate: true
+

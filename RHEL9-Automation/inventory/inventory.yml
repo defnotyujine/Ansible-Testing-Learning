@@ -1,4 +1,4 @@
 rhel9:
   hosts:
     rhel9_host1:
-      ansible_host: 192.168.8.43
+      ansible_host: 192.168.8.44

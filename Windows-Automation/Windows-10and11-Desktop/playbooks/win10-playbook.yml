@@ -1,8 +1,7 @@
 ---
-
 - name: Run Preliminary checks and Application Installation
   hosts: windows
-  gather_facts: yes
+  gather_facts: true
   
   tasks:
     - name: Gather Windows facts

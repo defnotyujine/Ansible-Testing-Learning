@@ -26,5 +26,3 @@
     new_label: '{{ disk.label }}'
     allocation_unit_size: '{{ disk.unit_size }}'
   when: created_partition.changed | bool or disk.format_force | default(False) | bool
-
-

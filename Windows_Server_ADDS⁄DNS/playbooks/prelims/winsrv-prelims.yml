@@ -21,7 +21,7 @@
         (Get-CimInstance -ClassName Win32_OperatingSystem).FreePhysicalMemory / 1024
       register: free_memory
 
-    - name: Show free memory available 
+    - name: Show free memory available
       debug:
         var: free_memory.stdout_lines
 
@@ -51,7 +51,7 @@
         path: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired'
       register: reboot_pending
 
-    - name: Fail if reboot is pending 
+    - name: Fail if reboot is pending
       ansible.builtin.fail:
         msg: "A reboot is pending on the target machine. Please reboot before continuing."
       when: reboot_pending.exists

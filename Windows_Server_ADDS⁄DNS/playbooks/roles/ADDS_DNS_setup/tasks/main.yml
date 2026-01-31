@@ -33,4 +33,3 @@
     dynamic_update: secure
     state: present
   loop: "{{ reverse_zones }}"
-  

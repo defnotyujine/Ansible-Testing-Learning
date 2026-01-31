@@ -1,7 +1,7 @@
 ---
 - name: Ensure Samba and dependencies are installed
   dnf:
-    name: 
+    name:
       - samba
       - samba-client
       - samba-common
@@ -34,7 +34,7 @@
     name: "{{ samba_user }}"
     state: present
 
-- name: Set Samba password for the user 
+- name: Set Samba password for the user
   command: smbpasswd -a {{ samba_user }}
   args:
     stdin: "{{ samba_password }}\n{{ samba_password }}"
@@ -56,7 +56,7 @@
     mode: '0777'
     owner: root
     group: sambashare
-  
+
 - name: Add Samba user to the sambashare group
   user:
     name: "{{ samba_user }}"
@@ -65,7 +65,7 @@
     append: yes
 
 - name: Ensure Samba configuration file exists
-  file: 
+  file:
     path: /etc/samba/smb.conf
     state: touch
 
@@ -106,4 +106,3 @@
 
 - name: Re-enable SELinux enforcement
   command: setenforce 1
-

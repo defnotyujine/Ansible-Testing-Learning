@@ -9,16 +9,8 @@
     enabled: yes
     password_never_expires: yes
   loop: "{{ users }}"
-  
+
 - name: Add users to their domain groups assigned
   ansible.windows.win_shell: |
     Add-ADGroupMember -Identity "{{ item.1 }}" -Members "{{ item.0.name }}"
   loop: "{{ users | subelements('groups') }}"
-
-
-
-
-
-
-
-

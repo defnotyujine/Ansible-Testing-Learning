@@ -4,7 +4,7 @@
     name: httpd
     state: present
 
-- name: Ensure httpd is enabled and running 
+- name: Ensure httpd is enabled and running
   systemd:
     name: httpd
     enabled: yes
@@ -15,7 +15,7 @@
     src: SambaWeb/
     dest: /var/www/html/
     owner: apache
-    group: apache 
+    group: apache
     mode: '0644'
 
 - name: Allow HTTP services throught the firewall permanently

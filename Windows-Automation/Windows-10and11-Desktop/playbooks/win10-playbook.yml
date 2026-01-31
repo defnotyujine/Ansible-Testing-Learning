@@ -2,7 +2,7 @@
 - name: Run Preliminary checks and Application Installation
   hosts: windows
   gather_facts: true
-  
+
   tasks:
     - name: Gather Windows facts
       ansible.builtin.setup:
@@ -26,4 +26,3 @@
     - name: Include Windows 10 Hardening
       ansible.builtin.include_role:
         name: WIN10-CIS
-    

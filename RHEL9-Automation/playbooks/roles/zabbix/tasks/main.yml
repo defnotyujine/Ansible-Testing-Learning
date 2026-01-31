@@ -3,7 +3,7 @@
   ansible.builtin.dnf:
     name:
       - epel-release
-      - wget 
+      - wget
       - curl
       - httpd
       - mariadb
@@ -35,7 +35,7 @@
 
 - name: Install Zabbix server, web frontend, and agent
   ansible.builtin.dnf:
-    name: 
+    name:
       - zabbix-server-mysql
       - zabbix-web-mysql
       - zabbix-apache-conf
@@ -49,7 +49,7 @@
     name: mariadb
     state: started
     enabled: yes
-  
+
 - name: Configure Zabbix database
   block:
     - name: Create Zabbix database
@@ -94,7 +94,7 @@
     regexp: '^#?DBPassword='
     line: 'DBPassword=password'
     insertafter: '^# DBName='
-    create: no  
+    create: no
 
 - name: Ensure Zabbix server and agent are started and enabled
   ansible.builtin.service:

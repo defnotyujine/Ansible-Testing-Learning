@@ -10,5 +10,5 @@
 
 - name: Set SELinux mode
   ansible.posix,selinux:
-    policy: {{ selinux_policy }}
+    policy: "{{ selinux_policy }}"
     state: "{{ selinux_mode }}"

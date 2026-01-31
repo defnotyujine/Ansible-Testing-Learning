@@ -3,7 +3,7 @@
     path: C:\temp\npp.8.7.9.Installer.x64.exe
     state: present
     arguments: /S
-    
+
 - name: Extract Zabbix Agent archive to target
   win_unzip:
     src: C:\temp\zabbix_agent-7.2.5-windows-amd64-openssl.zip
@@ -11,7 +11,7 @@
 
 # - name: Copy Zabbix Agent configuration file
 #   win_copy:
-#     src: /path/to/zabbix_agentd.conf 
+#     src: /path/to/zabbix_agentd.conf
 #     dest: C:\Program Files\Zabbix Agent\conf\zabbix_agentd.conf
 
 # - name: Start Zabbix Agent service

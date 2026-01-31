@@ -55,7 +55,7 @@
             - level1-server
             - level2-workstation
             - level2-server
-    
+
         - name: Apply RHEL 9 STIG Hardening
           ansible.builtin.include_role:
             name: RHEL9-STIG
@@ -64,4 +64,3 @@
     - name: Deployment finished
       ansible.builtin.debug:
         msg: "Deployment completed successfully on {{ inventory_hostname }}"
-

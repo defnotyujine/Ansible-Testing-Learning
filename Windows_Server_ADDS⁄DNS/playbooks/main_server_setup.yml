@@ -3,11 +3,10 @@
 - name: Run Ansible Roles on Target
   hosts: windows_server1
   gather_facts: true
-  vars_files:
-    - group_vars/group_vars.yml
   
   pre_tasks:
-    - import_tasks: ../playbooks/preliminaries/prelims.yml
+    - name: Run Preliminaries
+      ansible.builtin.import_tasks: prelims/winsrv-prelims.yml
   
   tasks:
     - name: VVolf Banner

@@ -3,10 +3,8 @@
 - name: Run Preliminary checks and Application Installation
   hosts: windows
   gather_facts: yes
-  vars_files:
-    - vars/partitioning.yml
+  
   tasks:
-
     - name: Gather Windows facts
       ansible.builtin.setup:
         gather_subset: all
@@ -20,8 +18,8 @@
       debug:
         msg: "{{ banner_output.stdout_lines }}"
 
-    - name: Include Preliminary Checks
-      include_tasks: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/prelims/win10-prelims.yml
+    - name: Run Preliminaries
+      ansible.builtin.import_tasks: prelims/win10-prelims.yml
 
     - name: Include Application Installation
       include_tasks: ~/Ansible/Windows-Automation/Windows-10and11-Desktop/roles/App_install/tasks/main.yml

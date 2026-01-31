@@ -6,7 +6,7 @@
 
   tasks:
     - name: Run Preliminaries
-      ansible.builtin.import_tasks: preliminaries/prelims.yml
+      ansible.builtin.import_tasks: prelims/rhel-prelims.yml
 
     - name: Include project roles
       block:

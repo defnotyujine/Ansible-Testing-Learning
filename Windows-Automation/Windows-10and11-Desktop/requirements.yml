@@ -1,0 +1,9 @@
+---
+roles:
+  - name: WIN10-CIS
+    src: git@github.com:ansible-lockdown/Windows-10-CIS.git
+    scm: git
+    
+  - name: WIN11-CIS
+    src: git@github.com:ansible-lockdown/Windows-11-CIS.git
+    scm: git

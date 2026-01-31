@@ -1,15 +1,12 @@
+---
 # Microsoft Windows Server 2 | Secondary Domain Controller
 - name: Setup ADDS/DNS on Server 2
   hosts: windows_server2
   gather_facts: true
-  become: true
-  become_method: runas
-  become_user: Administrator
-  vars_files:
-    - group_vars/group_vars.yml
 
   pre_tasks:
-    - import_tasks: ../playbooks/preliminaries/prelims.yml
+    - name: Run Preliminaries
+      ansible.builtin.import_tasks: prelims/winsrv-prelims.yml
   
   tasks:
     - name: VVolf Banner

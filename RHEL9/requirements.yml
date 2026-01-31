@@ -1,9 +1,0 @@
----
-roles:
-  - name: RHEL9-STIG
-    src: git@github.com:ansible-lockdown/RHEL9-STIG.git
-    scm: git
-    
-  - name: RHEL9-CIS
-    src: https://github.com/ansible-lockdown/RHEL9-CIS.git
-    scm: git

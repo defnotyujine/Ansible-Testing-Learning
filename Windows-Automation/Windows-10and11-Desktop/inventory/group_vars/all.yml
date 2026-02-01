@@ -25,6 +25,6 @@ partitioning:
 
 env_ansible:
     temp: "C:\\Temp\\"
-    name: 'FRQ_LOG_ROOT'
-    value: 'd:\\_FRQLOG'
-    folder: 'd:\\_FRQLOG'
+    name: 'LOG_ROOT'
+    value: 'd:\\_LOG'
+    folder: 'd:\\_LOG'

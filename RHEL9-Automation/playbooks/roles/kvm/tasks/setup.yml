@@ -31,3 +31,14 @@
         permanent: true
         state: enabled
         immediate: true
+
+    - name: Allow Cockpit service through firewall
+      ansible.builtin.include_role:
+        name: linux-system-roles.firewall
+      vars:
+        firewall:
+          - state: enabled
+            service:
+              - cockpit
+            runtime: true
+            permanent: true

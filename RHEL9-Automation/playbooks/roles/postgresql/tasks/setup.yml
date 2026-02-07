@@ -1,1 +1,35 @@
 ---
+- name: Import PostgreSQL GPG key
+  ansible.builtin.rpm_key:
+    key: https://download.postgresql.org/pub/repos/yum/keys/PGDG-RPM-GPG-KEY-RHEL
+    state: present
+
+- name: Install PostgreSQL {{ postgresql_server_version }} repository RPM
+  ansible.builtin.dnf:
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    state: present
+
+- name: Disable default PostgreSQL module (RHEL 9 Appstream)
+  ansible.builtin.dnf:
+    name: postgresql
+    state: absent
+
+- name: Install PostgreSQL {{ postgresql_server_version }} server
+  ansible.builtin.dnf:
+    name: "postgresql{{ postgresql_server_version }}-server"
+    state: present
+
+- name: Check if PostgreSQL database is initialized
+  ansible.builtin.stat:
+    path: "/var/lib/pgsql/{{ postgresql_server_version }}/data/PG_VERSION"
+  register: pg_data
+
+- name: Initialize PostgreSQL {{ postgresql_server_version }} database
+  ansible.builtin.command: "/usr/pgsql-{{ postgresql_server_version }}/bin/postgresql-16-setup initdb"
+  when: not pg_data.stat.exists
+
+- name: Enable and start PostgreSQL "{{ postgresql_server_version }}"" service
+  ansible.builtin.systemd:
+    name: "postgresql-{{ postgresql_server_version }}"
+    enabled: yes
+    state: started

@@ -1,1 +1,3 @@
 ---
+- name: Include task to setup and install PostgreSQL 16
+  ansible.builtin.include_tasks: setup.yml

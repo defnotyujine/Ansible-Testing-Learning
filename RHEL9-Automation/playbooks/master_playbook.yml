@@ -12,45 +12,47 @@
     - name: Include project roles
       block:
         - name: Install and Configure Samba
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: samba
           when: samba_role
+          tags: [samba]
 
         - name: Install and Configure HTTPD
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: httpd
           when: httpd_role
+          tags: [httpd]
 
         - name: Configure ClamAV
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: clamav
           when: clamav_role
-
-        - name: Configure Firewalld
-          ansible.builtin.include_role:
-            name: firewalld
-          when: firewalld_role
+          tags: [clamav]
 
         - name: Install Keycloak
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: keycloak
           when: keycloak_role
-
-        - name: Install Zabbix
-          ansible.builtin.include_role:
-            name: zabbix
-          when: zabbix_role
+          tags: [keycloak]
 
         - name: Setup KVM Cockpit
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: kvm
           when: kvm_role
+          tags: [kvm]
+
+        - name: Include PostgreSQL Role
+          ansible.builtin.import_role:
+            name: postgresql
+          when: postgresql_role
+          tags: [postgresql]
 
         - name: Apply RHEL 9 CIS Hardening
-          ansible.builtin.include_role:
+          ansible.builtin.import_role:
             name: RHEL9-CIS
           when: rhel9_cis_role
           tags:
+            - cis_hardening
             - level1-workstation
             - level1-server
             - level2-workstation
@@ -60,6 +62,8 @@
           ansible.builtin.include_role:
             name: RHEL9-STIG
           when: rhel9_stig_role
+          tags:
+            - stig_hardening
 
     - name: Deployment finished
       ansible.builtin.debug:

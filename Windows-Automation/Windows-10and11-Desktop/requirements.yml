@@ -3,7 +3,9 @@ roles:
   - name: WIN10-CIS
     src: git@github.com:ansible-lockdown/Windows-10-CIS.git
     scm: git
+    version: 2.0.2
 
   - name: WIN11-CIS
     src: git@github.com:ansible-lockdown/Windows-11-CIS.git
     scm: git
+    version: 2.0.2

@@ -6,50 +6,65 @@
 
   tasks:
     - name: Run Preliminaries
-      ansible.builtin.import_tasks: prelims/rhel-prelims.yml
+      ansible.builtin.include_tasks: prelims/rhel-prelims.yml
       when: run_preliminaries
+      tags: [always]
 
     - name: Include project roles
       block:
         - name: Install and Configure Samba
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: samba
+            apply:
+              tags: samba
           when: samba_role
           tags: [samba]
 
         - name: Install and Configure HTTPD
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: httpd
+            apply:
+              tags: httpd
           when: httpd_role
           tags: [httpd]
 
         - name: Configure ClamAV
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: clamav
+            apply:
+              tags: clamav
           when: clamav_role
           tags: [clamav]
 
         - name: Install Keycloak
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: keycloak
+            apply:
+              tags: keycloak
           when: keycloak_role
           tags: [keycloak]
 
         - name: Setup KVM Cockpit
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: kvm
+            apply:
+              tags: kvm
           when: kvm_role
           tags: [kvm]
 
         - name: Include PostgreSQL Role
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: postgresql
+            apply:
+              tags: [postgresql]
           when: postgresql_role
           tags: [postgresql]
 
         - name: Apply RHEL 9 CIS Hardening
-          ansible.builtin.import_role:
+          ansible.builtin.include_role:
             name: RHEL9-CIS
+            apply:
+              tags: cis_hardening
           when: rhel9_cis_role
           tags:
             - cis_hardening
@@ -61,6 +76,8 @@
         - name: Apply RHEL 9 STIG Hardening
           ansible.builtin.include_role:
             name: RHEL9-STIG
+            apply:
+              tags: stig_hardening
           when: rhel9_stig_role
           tags:
             - stig_hardening
@@ -68,3 +85,4 @@
     - name: Deployment finished
       ansible.builtin.debug:
         msg: "Deployment completed successfully on {{ inventory_hostname }}"
+      tags: [always]

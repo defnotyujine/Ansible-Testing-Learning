@@ -10,7 +10,7 @@ firewalld_role: false
 keycloak_role: false
 zabbix_role: false
 kvm_role: true
-postgresql_role: true
+postgresql_role: false
 rhel9_cis_role: false
 rhel9_stig_role: false
 

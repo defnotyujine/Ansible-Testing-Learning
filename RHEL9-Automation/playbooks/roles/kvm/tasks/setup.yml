@@ -26,13 +26,6 @@
       when: libvirt_user != "root"
 
     - name: Allow Cockpit service through firewall
-      ansible.builtin.firewalld:
-        service: cockpit
-        permanent: true
-        state: enabled
-        immediate: true
-
-    - name: Allow Cockpit service through firewall
       ansible.builtin.include_role:
         name: linux-system-roles.firewall
       vars:
